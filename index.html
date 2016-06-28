@@ -11,7 +11,18 @@
   </head>
   <body>
     <section class="viewport">
-      <img src="https://s3-ap-northeast-1.amazonaws.com/production-gajago-deal-images/d3461a97-2601-455d-b38c-1c681d321c41.jpg" style="width:100%" />
+      <img id="view-img" src="https://s3-ap-northeast-1.amazonaws.com/production-gajago-deal-images/d3461a97-2601-455d-b38c-1c681d321c41.jpg" style="width:100%" />
     </section>
+    <script type="text/javascript">
+      var images = [
+        'https://s3-ap-northeast-1.amazonaws.com/production-gajago-deal-images/36c35a7a-d43e-4945-8820-dd886084912e.jpg',
+        'https://s3-ap-northeast-1.amazonaws.com/production-gajago-deal-images/ae863e65-f5df-49d1-8426-7b8f916e17cb.jpg',
+        'https://s3-ap-northeast-1.amazonaws.com/production-gajago-deal-images/d3461a97-2601-455d-b38c-1c681d321c41.jpg'
+      ];
+      setInterval(function(){
+        var imageIndex = Date.now() % 3;
+        document.getElementById('view-img').src = images[imageIndex];
+      }, 1000);
+    </script>
   </body>
 </html>
