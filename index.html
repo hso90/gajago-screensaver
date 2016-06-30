@@ -6,30 +6,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
     <link href="./libs/ninja-slider/ninja-slider.css" rel="stylesheet" type="text/css" />
+    <style>
+        html, body, .view { height: 100%; }
+        body { margin: 0; background-color: black; }
+        #ninja-slider { position: absolute; top: 0; }
+    </style>
   </head>
-  <body style="margin:0;">
-    <section class="viewport">
+  <body>
+    <section class="view">
         <div id="ninja-slider">
             <div class="slider-inner">
                 <ul id="sliders"></ul>
             </div>
         </div>
     </section>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" type="text/javascript"></script>
+    <script src="./libs/ninja-slider/ninja-slider.js" type="text/javascript"></script>
     <script type="text/javascript">
         var images     = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg'];
         var imageCount = images.length;
         var imageIndex = 1;
         var imagePath  = './images/';
-        var imgEl = document.getElementById('ninja-slider');
-        var imgHTML = [];
+        var imgHTML    = [];
         for (var i = 0; i < images.length; i++) {
             imgHTML.push('<li>',
                 '<a class="ns-img" href="', imagePath, images[i], '"></a>',
                 '<div class="caption">thegajago.com</div>',
                 '</li>');
         }
-        document.getElementById('sliders').innerHTML = imgHTML.join('');
+        $('#sliders').html(imgHTML.join(''));
+
+        var nsOptions = {
+            sliderId: "ninja-slider",
+            transitionType: "zoom", //"fade", "slide", "zoom", "kenburns 1.2" or "none"
+            autoAdvance: true,
+            delay: 4000,
+            transitionSpeed: 1000,
+            aspectRatio: "2:1",
+            initSliderByCallingInitFunc: false,
+            shuffle: false,
+            startSlideIndex: 0, //0-based
+            navigateByTap: true,
+            pauseOnHover: false,
+            keyboardNav: true,
+            before: function(){
+                var bodyHeight   = $('body').outerHeight();
+                var sliderHeight = $slider.outerHeight();
+                var topPosition  = (bodyHeight - sliderHeight) / 2;
+                if (topPosition > 0 && topPosition < bodyHeight) {
+                    $slider.css('top', topPosition);
+                }
+            },
+            license: "mylicense"
+        };
+
+        var $slider = $('#ninja-slider');
+        var nslider = new NinjaSlider(nsOptions);
     </script>
-    <script src="./libs/ninja-slider/ninja-slider.js" type="text/javascript"></script>
   </body>
 </html>
