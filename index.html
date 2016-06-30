@@ -8,21 +8,38 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
+    <link href="./libs/ninja-slider/ninja-slider.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
     <section class="viewport">
-      <img id="view-img" src="https://s3-ap-northeast-1.amazonaws.com/production-gajago-deal-images/d3461a97-2601-455d-b38c-1c681d321c41.jpg" style="width:100%" />
+        <div id="ninja-slider">
+            <div class="slider-inner">
+                <ul id="sliders"></ul>
+                <div class="navsWrapper">
+                    <div id="ninja-slider-prev"></div>
+                    <div id="ninja-slider-next"></div>
+                </div>
+            </div>
+        </div>
+
+      <!-- <img id="view-img" src="" style="width:100%;" /> -->
     </section>
     <script type="text/javascript">
-      var images = [
-        'https://s3-ap-northeast-1.amazonaws.com/production-gajago-deal-images/36c35a7a-d43e-4945-8820-dd886084912e.jpg',
-        'https://s3-ap-northeast-1.amazonaws.com/production-gajago-deal-images/ae863e65-f5df-49d1-8426-7b8f916e17cb.jpg',
-        'https://s3-ap-northeast-1.amazonaws.com/production-gajago-deal-images/d3461a97-2601-455d-b38c-1c681d321c41.jpg'
-      ];
-      setInterval(function(){
-        var imageIndex = Date.now() % 3;
-        document.getElementById('view-img').src = images[imageIndex];
-      }, 1000);
+        var images     = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg'];
+        var imageCount = images.length;
+        var imageIndex = 1;
+        var imagePath  = './images/';
+        var imgEl = document.getElementById('ninja-slider');
+        var imgHTML = [];
+        for (var i = 0; i < images.length; i++) {
+            imgHTML.push('<li>',
+                '<a class="ns-img" href="', imagePath, images[i], '"></a>',
+                '<div class="caption">thegajago.com</div>',
+                '</li>');
+        }
+        document.getElementById('sliders').innerHTML = imgHTML.join('');
     </script>
+    <script src="./libs/ninja-slider/ninja-slider.js" type="text/javascript"></script>
   </body>
 </html>
