@@ -8,10 +8,12 @@ if (!shell.which('gm')) {
 }
 
 shell.ls('src-*.jpg').forEach(function(file) {
-    if (shell.exec(`gm convert ${file} -resize 1920 fhd-${file}`).code !== 0) {
+    let srcFilename = file;
+    let dstFilename = 'fhd-' + file.replace('src-', '');
+    if (shell.exec(`gm convert ${srcFilename} -resize 1920 ${dstFilename}`).code !== 0) {
         shell.echo(`Error: gm convert ${file} resize failed.`);
         shell.exit(1);
     } else {
-        shell.echo(`Success: gm convert ${file} resized.`);
+        shell.echo(`Success: gm convert ${srcFilename} > ${dstFilename} resized.`);
     }
 });
