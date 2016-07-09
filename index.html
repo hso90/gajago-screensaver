@@ -13,10 +13,10 @@
             width: 100%;
             height: 100%;
         }
-        .swiper-slide {
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position-y: 50%;
+        .swiper-slide img {
+            width: 100%;
+            position: absolute;
+            top: 20%;
         }
         .swiper-pagination-bullet {
             background: #fff;
@@ -42,13 +42,19 @@
         var imagePath  = './images/';
         var sliders    = [];
         for (var i = 0; i < images.length; i++) {
-            sliders.push('<div class="swiper-slide" style="background-image: url(', imagePath, images[i], ');"></div>');
+            // sliders.push('<div class="swiper-slide" style="background-image: url(', imagePath, images[i], ');"></div>');
+            sliders.push(
+                '<div class="swiper-slide">',
+                    '<img data-src="', imagePath, images[i], '" class="swiper-lazy">',
+                    '<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>',
+                '</div>');
         }
         $('#sliders').html(sliders.join(''));
 
         var mySwiper = new Swiper ('.swiper-container', {
             loop: true,
             pagination: '.swiper-pagination',
+            centeredSlides: true,
             effect: 'fade',
             speed: 3000,
             centeredSlides: true,
