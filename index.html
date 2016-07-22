@@ -13,10 +13,14 @@
             width: 100%;
             height: 100%;
         }
-        .swiper-slide img {
+        .swiper-slide {
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        /*.swiper-slide img {
             width: 100%;
             vertical-align: middle;
-        }
+        }*/
         .swiper-pagination-bullet {
             background: #fff;
             opacity: 1;
@@ -41,11 +45,12 @@
         var imagePath  = './images/';
         var sliders    = [];
         for (var i = 0; i < images.length; i++) {
-            sliders.push(
-                '<div class="swiper-slide">',
-                    '<img data-src="', imagePath, images[i], '" class="swiper-lazy">',
-                    '<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>',
-                '</div>');
+            sliders.push('<div class="swiper-slide" style="background-image: url(', imagePath, images[i], ');"></div>');
+            // sliders.push(
+            //     '<div class="swiper-slide">',
+            //         '<img data-src="', imagePath, images[i], '" class="swiper-lazy">',
+            //         '<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>',
+            //     '</div>');
         }
         $('#sliders').html(sliders.join(''));
 
